@@ -7,4 +7,9 @@ class ExamAnswer < ActiveRecord::Base
   def correct?
     question.correct_answer? text
   end
+
+  def points
+    return 0 unless correct?
+    question.points
+  end
 end

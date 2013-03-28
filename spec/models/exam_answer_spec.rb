@@ -12,4 +12,20 @@ describe ExamAnswer do
       answer.should_not be_correct
     end
   end
+
+  describe "#points" do
+    context "correct answer" do
+      it "returns its question points" do
+        answer = build :correct_answer
+        answer.points.should eq answer.question.points
+      end
+    end
+
+    context "wrong answer" do
+      it "returns 0" do
+        answer = build :wrong_answer
+        answer.points.should eq 0
+      end
+    end
+  end
 end

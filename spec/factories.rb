@@ -36,5 +36,17 @@ FactoryGirl.define do
     question { create :single_question }
     text 'Text'
   end
+
+  factory :correct_answer, class: :exam_answer do
+    entry { create :exam_entry }
+    question { create :single_question, correct_answer: 'Correct' }
+    text 'Correct'
+  end
+
+  factory :wrong_answer, class: :exam_answer do
+    entry { create :exam_entry }
+    question { create :single_question, correct_answer: 'Correct' }
+    text 'Wrong'
+  end
 end
 

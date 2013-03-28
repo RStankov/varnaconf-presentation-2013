@@ -14,10 +14,11 @@ class ExamEntry < ActiveRecord::Base
     answers.each do |answer|
       if answer.correct?
         correct_answers << answer
-        score += answer.question.points
       else
         wrong_answers << answer
       end
+
+      score += answer.points
     end
 
     {
