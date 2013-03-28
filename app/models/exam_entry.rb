@@ -10,7 +10,7 @@ class ExamEntry < ActiveRecord::Base
     correct_answers = []
     answers.each do |answer|
       question = answer.question
-      if (question.type == 'single' && question.correct_answer == answer.text) || (question.type == 'multi' && question.correct_answers.include?(answer.text))
+      if question.correct_answer? answer.text
         correct_answers << answer
       end
     end
@@ -18,7 +18,7 @@ class ExamEntry < ActiveRecord::Base
     wrong_answers = []
     answers.each do |answer|
       question = answer.question
-      unless (question.type == 'single' && question.correct_answer == answer.text) || (question.type == 'multi' && question.correct_answers.include?(answer.text))
+      unless question.correct_answer? answer.text
         wrong_answers << answer
       end
     end
@@ -34,5 +34,4 @@ class ExamEntry < ActiveRecord::Base
       score: score
     }
   end
-
 end
