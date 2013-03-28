@@ -8,17 +8,13 @@ class ExamEntry < ActiveRecord::Base
 
   def result
     correct_answers = []
+    wrong_answers = []
+
     answers.each do |answer|
       question = answer.question
       if question.correct_answer? answer.text
         correct_answers << answer
-      end
-    end
-
-    wrong_answers = []
-    answers.each do |answer|
-      question = answer.question
-      unless question.correct_answer? answer.text
+      else
         wrong_answers << answer
       end
     end
