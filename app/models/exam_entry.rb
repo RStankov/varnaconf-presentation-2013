@@ -9,19 +9,15 @@ class ExamEntry < ActiveRecord::Base
   def result
     correct_answers = []
     wrong_answers = []
+    score = 0
 
     answers.each do |answer|
-      question = answer.question
-      if question.correct_answer? answer.text
+      if answer.correct?
         correct_answers << answer
+        score += answer.question.points
       else
         wrong_answers << answer
       end
-    end
-
-    score = 0
-    correct_answers.each do |answer|
-      score += answer.question.points
     end
 
     {

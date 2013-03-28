@@ -5,6 +5,13 @@ FactoryGirl.define do
   factory :exam do
   end
 
+  factory :question, class: :exam_question do
+    exam
+    type 'single'
+    points 1
+    correct_answer 'Correct'
+  end
+
   factory :single_question, class: :exam_question do
     exam
     type 'single'
