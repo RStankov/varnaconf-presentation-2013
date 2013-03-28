@@ -20,10 +20,9 @@ describe ExamEntry do
 
       result = entry.result
 
-      result.keys.should eq [:correct_answers, :wrong_answers, :score]
-      result[:correct_answers].map(&:question).should eq [single_1, multi_1]
-      result[:wrong_answers].map(&:question).should eq [single_2, multi_2]
-      result[:score].should eq single_1.points + multi_1.points
+      result.correct_answers.map(&:question).should eq [single_1, multi_1]
+      result.wrong_answers.map(&:question).should eq [single_2, multi_2]
+      result.score.should eq single_1.points + multi_1.points
     end
   end
 end
